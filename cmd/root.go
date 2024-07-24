@@ -23,6 +23,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/eyasuyuki/mixlsx/internal"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -45,10 +46,9 @@ to quickly create a Cobra application.`,
 		// Uncomment the following line if your bare application
 		// has an action associated with it:
 		Run: func(cmd *cobra.Command, args []string) {
-			// read data
-			// read template
-			// replace template
-			// save as template
+			book := internal.ReadBook(args[0])
+			template := cmd.Flag("template").Value.String()
+			internal.Replace(template, book)
 		},
 	}
 )
